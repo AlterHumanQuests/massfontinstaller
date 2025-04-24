@@ -59,7 +59,7 @@ The following font packages are available for automatic download:
 
 If the script doesn't run:
 1. Open Terminal (Applications > Utilities > Terminal)
-2. Type: `chmod +x /Users/mac/Desktop/font_installer.sh`
+2. Type: `chmod +x /Users/mac/Desktop/font_installer_fixed.sh`
 3. Try running the script again
 
 If downloads fail:
