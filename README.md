@@ -1,70 +1,61 @@
-# Font Mass Installer
+# Font Downloader App - Installation Guide
 
-This tool allows you to download and install multiple font files into your system with ease.
+## Overview
+This document provides instructions for properly installing the Font Downloader app on macOS. The app has been code-signed and notarized with Apple, but you may need to follow these steps to ensure it runs properly.
 
-## Features
+## Installation Steps
 
-- Download popular free font collections directly from the internet
-- Install fonts from a local directory in a single operation
-- Automatically handles font extraction and installation
-- Skips fonts that are already installed
-- Updates the system font cache automatically
-- Requires no administrator privileges
+### Step 1: Extract the App
+1. Download the "Font_Downloader_Fixed.zip" file
+2. Double-click the zip file to extract it
+3. You should now have a "Font Downloader.app" in the same folder
 
-## How to Use
+### Step 2: Remove Quarantine Flags (Important!)
+When downloading apps from the internet, macOS automatically adds "quarantine" flags as a security measure. Even though this app is signed and notarized, you may need to manually remove these flags.
 
-1. Double-click the `font_installer_fixed.sh` file on your desktop
-   - If you get a security warning, right-click (or Control-click) the file and select "Open"
-   - Select "Open" when prompted
+#### Option A: Using Finder
+1. Right-click (or Control+click) on "Font Downloader.app"
+2. Select "Open" from the context menu
+3. If you get a warning dialog, click "Open" again
 
-2. Choose from the main menu options:
-   - **Download and install fonts automatically** - Choose from a curated list of popular free font collections
-   - **Install fonts from a local directory** - Select a folder containing font files you already have
-   - **Exit** - Close the application
+#### Option B: Using Terminal (Recommended if Option A fails)
+1. Open Terminal (from Applications > Utilities > Terminal)
+2. Copy and paste the following command, but don't press Enter yet:
+   ```
+   xattr -d com.apple.quarantine 
+   ```
+3. Add a space after the command, then drag and drop the "Font Downloader.app" into the Terminal window to automatically fill in the path
+4. Press Enter to execute the command
+5. There will be no output if successful
 
-3. If you choose to download fonts automatically:
-   - Select a font package from the available options
-   - The script will download, extract, and install the fonts automatically
-   - Wait for the process to complete
-
-4. If you choose to install from a local directory:
-   - Select a folder containing font files (.ttf, .otf, .ttc, or .dfont)
-   - You can drag the folder containing the font files directly into the terminal window
-   - Wait for the process to complete
-
-5. When finished, you'll see a summary of:
-   - Number of fonts installed
-   - Number of fonts skipped (already installed)
-   - Number of fonts that failed to install (if any)
-
-## Available Font Packages
-
-The following font packages are available for automatic download:
-
-1. **Google Fonts - Popular Selection** - A collection of popular Google fonts including Open Sans, Roboto, Lato, and more
-2. **Programming Fonts Collection** - Fonts optimized for coding including JetBrains Mono, Fira Code, and others
-3. **IBM Plex Font Family** - IBM's open-source corporate typeface
-4. **Source Sans Pro Font Family** - Adobe's open-source sans serif font family
-5. **Ubuntu Font Family** - The official font family of the Ubuntu operating system
-6. **Inter Font Family** - A modern typeface designed for computer screens
-
-## Notes
-
-- Fonts are installed to your user's font directory (`~/Library/Fonts`)
-- You may need to restart applications to see the newly installed fonts
-- No system-level permissions are required as this script only modifies your user font directory
-- Internet connection is required for the automatic download option
+### Step 3: Open the App
+After removing the quarantine flags, you should be able to open the app normally:
+1. Double-click on "Font Downloader.app"
+2. The app should now open without any warnings
 
 ## Troubleshooting
 
-If the script doesn't run:
-1. Open Terminal (Applications > Utilities > Terminal)
-2. Type: `chmod +x /Users/mac/Desktop/font_installer_fixed.sh`
-3. Try running the script again
+If you still see an error message stating "The application 'Font Downloader' can't be opened":
 
-If downloads fail:
-1. Check your internet connection
-2. Try a different font package
-3. If problems persist, try the "Install fonts from a local directory" option instead
+1. Make sure you've properly removed the quarantine flags (Step 2)
+2. Check your Security & Privacy settings:
+   - Open System Preferences
+   - Go to Security & Privacy
+   - Look for a message about "Font Downloader" being blocked
+   - Click "Open Anyway" if available
 
-If you encounter any issues or have questions, please let me know!
+3. Try running the following command in Terminal:
+   ```
+   chmod +x "/path/to/Font Downloader.app/Contents/MacOS/applet"
+   ```
+   (Replace "/path/to/" with the actual path to your app)
+
+4. If the above steps don't work, try reinstalling the app
+
+## Security Information
+- This app has been properly code-signed with a Developer ID certificate
+- The app has been notarized by Apple's security service
+- The notarization ticket has been stapled to the app
+
+## Support
+If you continue to experience issues opening the app, please contact the developer for assistance.
