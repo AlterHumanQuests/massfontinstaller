@@ -13,7 +13,7 @@ This tool allows you to download and install multiple font files into your syste
 
 ## How to Use
 
-1. Double-click the `font_installer.sh` file on your desktop
+1. Double-click the `font_installer_fixed.sh` file on your desktop
    - If you get a security warning, right-click (or Control-click) the file and select "Open"
    - Select "Open" when prompted
 
