@@ -1,0 +1,87 @@
+# Font Downloader - Run Script Directly
+
+## Overview
+If you're experiencing issues opening the Font Downloader app bundle, you can run the script directly using macOS's built-in AppleScript tools. This bypasses many of the security and permission issues that can occur with app bundles.
+
+## Instructions for Running the Script Directly
+
+### Step 1: Extract the Script from the App Bundle
+1. Open Finder
+2. Navigate to where you've saved "Font Downloader.app"
+3. Right-click (or Control+click) on "Font Downloader.app"
+4. Select "Show Package Contents"
+5. Navigate to Contents > Resources > Scripts
+6. You should see a file named "main.scpt"
+7. Copy this file to a convenient location like your Desktop
+
+### Step 2: Open the Script in Script Editor
+1. Open Script Editor (found in Applications > Utilities > Script Editor)
+2. Choose File > Open from the menu
+3. Navigate to where you saved the "main.scpt" file and open it
+
+### Step 3: Run the Script
+1. In Script Editor, click the "Run" button (▶️) in the toolbar
+2. The script will execute directly within Script Editor without relying on the app bundle
+3. You'll see the results in the lower pane of the Script Editor window
+
+## Alternative: Create a New Script File
+
+If you can't extract the script file from the app bundle or it doesn't work, here's how to create a simple font downloader script:
+
+1. Open Script Editor (Applications > Utilities > Script Editor)
+2. Create a new document
+3. Copy and paste the following simple font downloader script:
+
+```applescript
+-- Basic Font Downloader Script
+-- This is a simplified version and may not have all features of the original
+
+tell application "Finder"
+    -- Create a dialog to get the font URL
+    set fontURL to text returned of (display dialog "Enter the URL of the font file to download:" default answer "https://")
+    
+    -- Ask for a destination folder
+    set destFolder to choose folder with prompt "Select where to save the downloaded font:"
+    
+    -- Extract filename from URL
+    set AppleScript's text item delimiters to "/"
+    set urlParts to text items of fontURL
+    set fileName to last item of urlParts
+    set AppleScript's text item delimiters to ""
+    
+    -- Download the font using curl
+    set downloadCommand to "curl -L '" & fontURL & "' -o '" & (POSIX path of destFolder) & fileName & "'"
+    
+    -- Execute the download
+    do shell script downloadCommand
+    
+    -- Notify user
+    display dialog "Font downloaded successfully to:" & return & (POSIX path of destFolder) & fileName buttons {"OK"} default button "OK"
+end tell
+```
+
+4. Click the "Run" button to test it
+5. If you want to save it as a script for future use, go to File > Save
+6. Give it a name like "Font Downloader Script"
+7. In the File Format dropdown, choose "Script" (.scpt)
+
+## Additional Resources
+
+If you're having trouble with the script:
+
+1. **Check Script Permissions**: Make sure Script Editor has necessary permissions in System Preferences > Security & Privacy > Privacy
+   
+2. **Enable Developer Tools**: In macOS Catalina and later, you may need to enable developer tools:
+   ```
+   sudo spctl --master-disable
+   ```
+   (This will temporarily reduce security restrictions; you can re-enable with `sudo spctl --master-enable`)
+
+3. **View Script Output**: In Script Editor, choose View > Show Log to see detailed information about script execution
+
+4. **Check for Script Errors**: If the script fails to run, check the error messages in Script Editor for clues about what's wrong
+
+5. **Alternative Download Method**: If all else fails, you can use the built-in Safari browser to download fonts manually
+
+## Support
+If you're unable to run the script even after following these steps, please contact the developer with specific error messages from Script Editor.
